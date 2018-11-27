@@ -10,6 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function city()
+    {
+      return $this->hasOne(City::class, 'id', 'city_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

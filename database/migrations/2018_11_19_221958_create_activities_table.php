@@ -16,9 +16,8 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->integer('targets_id'); //foreign key con id de tabla targets
-            $table->string('rangeAge');
-            $table->integer('city_id'); //foreign key con id de tabla cities
+            // $table->integer('city_id'); //foreign key con id de tabla cities
+            // $table->integer('country_id'); //foreign key con id de tabla paises
             $table->timestamps();
         });
     }
