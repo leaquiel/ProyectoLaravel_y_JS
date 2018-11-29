@@ -28,8 +28,6 @@ $factory->define(App\User::class, function (Faker $faker) {
           'Fiestero',
           'Trabajo',
         ]),
-        'question' => $faker->randomLetter,
-        'answer' => $faker->word,
         'image' => $faker->imageUrl(640, 480),
     ];
 });

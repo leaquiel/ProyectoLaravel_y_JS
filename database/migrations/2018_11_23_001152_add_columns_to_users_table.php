@@ -16,8 +16,6 @@ class AddColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('nickname')->unique();
             $table->string('target')->nullable();
-            $table->string('question');
-            $table->string('answer');
             $table->string('image');
         });
     }
@@ -33,8 +31,6 @@ class AddColumnsToUsersTable extends Migration
             $table->dropColumn('nickname');
             $table->dropColumn('nationality');
             $table->dropColumn('target');
-            $table->dropColumn('question');
-            $table->dropColumn('answer');
             $table->dropColumn('image');
         });
     }

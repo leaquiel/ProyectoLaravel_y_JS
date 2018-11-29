@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class activitiesController extends Controller
+use App\Activity;
+
+class ActivitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,11 @@ class activitiesController extends Controller
      */
     public function index()
     {
-        //
+      $activities = Activity::orderBy('name')->simplePaginate(2);
+      // $activities = Activity::all();
+      $allActivities = Activity::all()->count();
+
+      return view('searches.first')->with(compact('activities') );
     }
 
     /**

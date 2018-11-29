@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('actividades', 'ActivitiesController@index');
+
+Route::get('/apiCities/{country_id}', function ($countryId) {
+  // $cities = \App\City::all("name", "country_id");
+  $cities = \App\City::where("country_id", $countryId)->get();
+  return $cities;
+});

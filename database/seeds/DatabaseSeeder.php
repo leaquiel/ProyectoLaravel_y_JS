@@ -11,6 +11,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // $ch = curl_init("https://restcountries.eu/rest/v2/all");
+        //
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //
+        // $output = curl_exc($ch);
+        //
+        // curl_close($ch);
+        //
+        // $countries = json_decode($output, true);
+        //
+        // $finalCountriesArray = [];
+        //
+        // foreach ($countries as $country) {
+        //   $finalCountriesArray[] = $country['name'];
+        // }
+        //
+        // App\Country::create(['name' => 'Argentina']);
+        //
+        // foreach ($finalCountriesArray as $country) {
+        //   App\Country::create(['name' => $country]);
+        // }
+
+
         $countries = factory(App\Country::class)->times(20)->create();
         $cities = factory(App\City::class)->times(20)->create();
         $activities = factory(App\Activity::class)->times(5)->create();

@@ -21,16 +21,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-      'id',
-      'userName',
-      'userFullName',
-      'userNationality',
-      'userEmail',
-      'email_verified_at',
-      'userTarget',
-      'userQuestion',
-      'userAnswer',
-      'userImage'
+      'name',
+      'email',
+      'password',
+      'nickname',
+      'question',
+      'answer',
+      'image',
+      'city_id'
     ];
 
     /**
@@ -39,6 +37,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'userPassword', 'remember_token',
+        'password', 'remember_token',
     ];
 }
