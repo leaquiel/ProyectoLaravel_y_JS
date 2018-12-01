@@ -72,9 +72,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Necesito el archivo en una variable esta vez
+        // $file = $request->file("image");
+        $file = $data['image'];
+
+        // dd($file);
+
+
+        // Nombre final de la imagen
+        $finalName = strtolower(str_replace(" ", "_", $data['name']));
+
+        // Armo un nombre único para este archivo
+        $name = $finalName . uniqid('_image_') . "." . $file->extension();
+
+        // Guardo el archivo en la carpeta
+        $file->storePubliclyAs("public/storage/usersImage", $name);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'nickname' => $data['nickname'],
+
+            'image' => $name,
+
+            'city_id' => $data['city_id'],
+            'target' => $data['target'],
             'password' => Hash::make($data['password']),
         ]);
     }

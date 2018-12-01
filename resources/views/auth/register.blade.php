@@ -6,20 +6,20 @@
 
   @endphp
 <div class="container">
-  @if ($errors)
+  {{-- @if ($errors)
     <ul>
     @foreach ($errors->all() as $error)
       <li>{{ $error }}</li>
     @endforeach
     </ul>
-  @endif
+  @endif --}}
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -136,7 +136,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">Imagen</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="text" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" value="{{ old('image') }}">
+                                <input id="image" type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" value="{{ old('image') }}">
 
                                 @if ($errors->has('image'))
                                     <span class="invalid-feedback" role="alert">
