@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         //
         // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         //
-        // $output = curl_exc($ch);
+        // $output = curl_exec($ch);
         //
         // curl_close($ch);
         //
@@ -27,13 +27,13 @@ class DatabaseSeeder extends Seeder
         //   $finalCountriesArray[] = $country['name'];
         // }
         //
-        // App\Country::create(['name' => 'Argentina']);
+        // // App\Country::create(['name' => 'Argentina']);
         //
         // foreach ($finalCountriesArray as $country) {
         //   App\Country::create(['name' => $country]);
         // }
 
-
+        // App\Country::create(['name' => 'Argentina']);
         $countries = factory(App\Country::class)->times(20)->create();
         $cities = factory(App\City::class)->times(20)->create();
         $activities = factory(App\Activity::class)->times(5)->create();

@@ -55,11 +55,11 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ],
         [
-          'name.required' => 'nomber obligatorio',
-          'email.required' => 'email obligatorio',
-          'email.email' => 'email invalido',
-          'country_id.required' => 'pais obligatorio',
-          'name.string' => 'nomber deben ser letras',
+        //   'name.required' => 'nomber obligatorio',
+        //   'email.required' => 'email obligatorio',
+        //   'email.email' => 'email invalido',
+          'country_id.required' => 'El campo pais es obligatorio',
+        //   'name.string' => 'nomber deben ser letras',
         ]
       );
     }
@@ -72,12 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // Necesito el archivo en una variable esta vez
-        // $file = $request->file("image");
         $file = $data['image'];
-
-        // dd($file);
-
 
         // Nombre final de la imagen
         $finalName = strtolower(str_replace(" ", "_", $data['name']));

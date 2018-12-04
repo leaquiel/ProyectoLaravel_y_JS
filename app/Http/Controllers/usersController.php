@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UsersRequest;
+use App\User;
+use App\Country;
+// use app\City;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
 
 class UsersController extends Controller
 {
@@ -13,17 +19,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+      $user=User::all();
+      return view('users.profile', compact('user'));
     }
 
     /**
@@ -37,16 +34,22 @@ class UsersController extends Controller
         //
     }
 
+    public function showFriends($id)
+    {
+      //aca deberia consultar sobre la tabla que relaciona usuarios conn usuarios
+      return view('users.profile');
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showUser()
     {
-        //
+        return view('users.profile');
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -54,9 +57,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $countries=Country::all();
+        return view('users.profileEdit', compact('countries'));
     }
 
     /**
@@ -66,9 +70,34 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersRequest $request, $id)
     {
-        //
+      var_dump(User::all());
+      $user = User::find($id);
+
+
+
+      $file = $request->image;
+
+      // Nombre final de la imagen
+      $finalName = strtolower(str_replace(" ", "_", $request->name));
+
+      // Armo un nombre único para este archivo
+      $name = $finalName . uniqid('_image_') . "." . $file->extension();
+
+      // Guardo el archivo en la carpeta
+      $file->storePubliclyAs("public/storage/usersImage", $name);
+
+      $user->name = $request->name;
+      $user->email = $request->email;
+      $user->nickname = $request->nickname;
+
+      $user->image = $name;
+
+      $user->city_id = $request->city_id;
+      $user->target = $request->target;
+      $user->save();
+      return redirect('/profile');
     }
 
     /**

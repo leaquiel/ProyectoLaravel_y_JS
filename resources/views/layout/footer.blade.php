@@ -13,12 +13,12 @@
       </ul>
 
       <ul class="logos">
-        <li><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
-        <li><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
-        <li><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
-        <li><a href="#"><i class="icon ion-logo-youtube"></i></a></li>
-        <li><a href="#"><i class="icon ion-logo-pinterest"></i></a></li>
-        <li><a href="#"><i class="icon ion-logo-linkedin"></i></a></li>
+        <li><a href="#"><i class="icon icon-footer ion-logo-facebook"></i></a></li>
+        <li><a href="#"><i class="icon icon-footer ion-logo-twitter"></i></a></li>
+        <li><a href="#"><i class="icon icon-footer ion-logo-instagram"></i></a></li>
+        <li><a href="#"><i class="icon icon-footer ion-logo-youtube"></i></a></li>
+        <li><a href="#"><i class="icon icon-footer ion-logo-pinterest"></i></a></li>
+        <li><a href="#"><i class="icon icon-footer ion-logo-linkedin"></i></a></li>
       </ul>
 
   </div>
@@ -34,6 +34,6 @@
 
 </div> <!--CIERRE DEL CONTENEDOR DEL FOOTER-->
 <!-- jQuery -->
-<script src="js/jquery-3.3.1.min.js"></script>
+{{-- <script src="/js/jquery-3.3.1.min.js"></script> --}}
 <!-- Bootstrap JS -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>

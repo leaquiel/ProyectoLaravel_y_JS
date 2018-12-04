@@ -1,0 +1,18 @@
+@import "normalize.css";
+
+@import "generalidades.css";
+
+/*   COMIENZO DE CONTENIDO DEL INDEX  */
+@import "index.css";
+/*   FIN DE CONTENIDO DEL INDEX  */
+
+/*   COMIENZO DE CONTENIDO DEL registro  */
+@import "register.css";
+/*   FIN DE CONTENIDO DEL registro  */
+
+/*   COMIENZO DE CONTENIDO DEL FOOTER  */
+@import "footer.css";
+/*   FIN DE CONTENIDO DEL FOOTER  */
+
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Dosis:300,400,500');
+/* @import "index.css"; */

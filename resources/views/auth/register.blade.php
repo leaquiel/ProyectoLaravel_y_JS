@@ -1,10 +1,24 @@
-@extends('layouts.app')
 
-@section('content')
+
+
+@extends('layout.base')
+@section('title')
+Register
+@php
+  $pageTitle = 'Register';
+@endphp
+@endsection
+@section('main_content')
+
+
+
+
+
   @php
   use App\User;
-
   @endphp
+
+  <br><br><br>
 <div class="container">
   {{-- @if ($errors)
     <ul>
@@ -97,7 +111,7 @@
                                   <option value="">Elije un pais</option>
 
                                   @foreach ($countries as $country)
-                                    <option value={{ $country->id }}> {{ $country->name }}</option>
+                                    <option {{ old('country_id')==$country->id  ? ' selected' : '' }} value={{ $country->id }}> {{ $country->name }}</option>
                                   @endforeach
 
                                 </select>
