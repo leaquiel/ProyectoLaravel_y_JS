@@ -4,8 +4,16 @@
   <h2>EDITAR PERFIL</h2>
   <hr>
   <div class="card-body">
-      <form method="POST" enctype="multipart/form-data" action="/profile/{{ Auth::user()->id }}">
+      <form id="registerForm" method="POST" enctype="multipart/form-data" action="/profile/{{ Auth::user()->id }}">
           @csrf
+
+          {{ method_field('PUT') }}
+
+          @if ($errors)
+            @foreach ($errors->all() as $error)
+              <li> {{ $error }} </li>
+            @endforeach
+          @endif
 
           <div class="form-group row">
               <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
@@ -14,11 +22,11 @@
                   <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
                   value="{{ Auth::user()->name ? Auth::user()->name : old('name') }}" autofocus>
 
+                  <span class="invalid-feedback" role="alert">
                   @if ($errors->has('name'))
-                      <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('name') }}</strong>
-                      </span>
                   @endif
+                </span>
               </div>
           </div>
 
@@ -29,11 +37,11 @@
               <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
               value="{{ Auth::user()->email ? Auth::user()->email : old('email') }}">
 
+              <span class="invalid-feedback" role="alert">
               @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
                   <strong>{{ $errors->first('email') }}</strong>
-                </span>
               @endif
+            </span>
             </div>
           </div>
 
@@ -43,11 +51,11 @@
               <div class="col-md-6">
                   <input id="nickname" type="text" class="form-control{{ $errors->has('nickname') ? ' is-invalid' : '' }}" name="nickname" value="{{ Auth::user()->nickname ? Auth::user()->nickname : old('nickname') }}">
 
+                  <span class="invalid-feedback" role="alert">
                   @if ($errors->has('nickname'))
-                      <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('nickname') }}</strong>
-                      </span>
                   @endif
+                </span>
               </div>
           </div>
 
@@ -67,11 +75,11 @@
 
                   </select>
 
+                  <span class="invalid-feedback" role="alert">
                   @if ($errors->has('target'))
-                      <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('target') }}</strong>
-                      </span>
                   @endif
+                </span>
               </div>
           </div>
 
@@ -89,11 +97,11 @@
 
                   </select>
 
+                  <span class="invalid-feedback" role="alert">
                   @if ($errors->has('country_id'))
-                      <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('country_id') }}</strong>
-                      </span>
                   @endif
+                </span>
               </div>
           </div>
 
@@ -111,11 +119,11 @@
 
                   </select>
 
+                  <span class="invalid-feedback" role="alert">
                   @if ($errors->has('city_id'))
-                      <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('city_id') }}</strong>
-                      </span>
                   @endif
+                </span>
               </div>
           </div>
 
@@ -126,11 +134,11 @@
                   <input id="image" type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image"
                   value="{{ Auth::user()->image ? Auth::user()->image : old('image') }}">
 
+                  <span class="invalid-feedback" role="alert">
                   @if ($errors->has('image'))
-                      <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('image') }}</strong>
-                      </span>
                   @endif
+                </span>
               </div>
           </div>
 
@@ -140,11 +148,11 @@
               <div class="col-md-6">
                   <input id="actualPassword" type="password" class="form-control{{ $errors->has('actualPassword') ? ' is-invalid' : '' }}" name="actualPassword">
 
+                  <span class="invalid-feedback" role="alert">
                   @if ($errors->has('actualPassword'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('actualPassword') }}</strong>
-                      </span>
+                      <strong>{{ $errors->first('actualPassword') }}</strong>
                   @endif
+                  </span>
               </div>
           </div>
 
@@ -162,28 +170,143 @@
     window.addEventListener("load", function () {
       let selectCountries = document.querySelector("#country_id");
       let selectCities = document.querySelector("#city_id");
-      console.log(selectCities);
+      let countryId = this.value;
 
-      selectCountries.addEventListener("change", function () {
-        selectCities.innerHTML = "";
-        let countryId = this.value;
+      fetch(`http://localhost:8000/apiCities/${countryId}`)
+        .then(response => response.json())
+        .then(cities => {
+          if (cities.length > 0) {
+            cities.forEach(city => {
+              selectCities.innerHTML += `<option value="${city.id}"> ${city.name} </option>`;
+            })
+          } else {
+            selectCities.innerHTML += `<option value="0"> Sin ciudad </option>`;
+          }
+        })
+        .catch(error => console.log(error));
 
-        console.log(countryId);
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-        fetch(`http://localhost:8000/apiCities/${countryId}`)
-          .then(response => response.json())
-          .then(cities => {
-            if (cities.length > 0) {
-              cities.forEach(city => {
-                selectCities.innerHTML += `<option value="${city.id}"> ${city.name} </option>`;
-              })
-            } else {
-              selectCities.innerHTML += `<option value="0"> Sin ciudad </option>`;
-            }
-          })
-          .catch(error => console.log(error));
-      })
-    })
+    var formulario = document.querySelector('#registerForm');
+
+    var campos = formulario.elements;
+
+    campos = Array.from(campos);
+    campos = campos.filter(campo => campo.classList.contains('form-control'));
+
+
+    const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const regexNumbers = /^\d+$/;
+
+    var campoName = formulario.name;
+    var campoEmail = formulario.email;
+    var campoNickname = formulario.nickname;
+    var campoTarget = formulario.target;
+    var campoCountry = formulario.country_id;
+    var campoCity = formulario.city_id;
+    var campoActualPassword = formulario.actualPassword;
+    var finalData = {};
+
+    function validateEmpty () {
+      var error = this.parentElement.querySelector('.invalid-feedback');
+      var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+      if (this.value.trim() === '') {
+        this.classList.add('is-invalid');
+        error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+      } else {
+        error.innerText = '';
+        this.classList.remove('is-invalid');
+        }
+    }
+
+    function validateEmptyAndEmail () {
+    var error = this.parentElement.querySelector('.invalid-feedback');
+    var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+    if (this.value.trim() === '') {
+      this.classList.add('is-invalid');
+      error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+    } else if (!regexEmail.test(this.value.trim())) {
+      error.innerText = 'Escribí un formato de email valido';
+    } else {
+      error.innerText = '';
+      this.classList.remove('is-invalid');
+    }
+    }
+
+    campoName.addEventListener('blur', validateEmpty);
+    campoEmail.addEventListener('blur', validateEmptyAndEmail);
+    campoCountry.addEventListener('blur', validateEmpty);
+
+    campoActualPassword.addEventListener('blur', function () {
+      var error = this.parentElement.querySelector('.invalid-feedback');
+      var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+      if (this.value.trim() === '') {
+        this.classList.add('is-invalid');
+        error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+      } else {
+        error.innerText = '';
+        this.classList.remove('is-invalid');
+      }
+    });
+
+    formulario.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (
+        campoName.value.trim() === '' ||
+        campoEmail.value.trim() === '' ||
+        campoNickname.value.trim() === '' ||
+        campoTarget.value.trim() === '' ||
+        campoCountry.value.trim() === '' ||
+        campoCity.value.trim() === '' ||
+        campoActualPassword.value.trim() === ''
+      )
+      {
+        campos.forEach(function (campo) {
+        var error = campo.parentElement.querySelector('.invalid-feedback');
+        var nombreCampo = campo.parentElement.parentElement.querySelector('label').innerText;
+        if (campo.value.trim() === '') {
+          campo.classList.add('is-invalid');
+          error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+        }
+        });
+      } else {
+        campos.forEach(function (campo) {
+          finalData[campo.name] = campo.value;
+          var error = campo.parentElement.querySelector('.invalid-feedback');
+          campo.classList.remove('is-invalid');
+          campo.value = '';
+          error.innerText = '';
+        });
+        formulario.style.display = 'none';
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
   </script>
 
 

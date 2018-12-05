@@ -30,7 +30,7 @@ class UsersRequest extends FormRequest
    			'image' => 'required | mimes:jpeg,jpg,png',
    			'city_id' => 'required',
    			'target' => 'required',
-   			'actualPasswordn' => 'required'
+   			'actualPassword' => 'required'
    		];
    	}
 

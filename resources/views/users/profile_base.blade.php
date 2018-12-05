@@ -39,7 +39,7 @@ Ejemplo
             </li>
             <li class="nav-item">
               <a class="nav-link alert alert-secondary"
-              href="/profile/{{{{Auth::user()->id}}}}/friends"
+              href="/profile/{{Auth::user()->id}}/friends"
               >Ver Amigos</a>
             </li>
             <li class="nav-item">

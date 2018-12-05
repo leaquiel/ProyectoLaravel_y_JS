@@ -72,8 +72,10 @@ class UsersController extends Controller
      */
     public function update(UsersRequest $request, $id)
     {
-      var_dump(User::all());
+
       $user = User::find($id);
+
+      //dd($user);
 
 
 

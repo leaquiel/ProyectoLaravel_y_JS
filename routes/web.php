@@ -36,9 +36,11 @@ Route::middleware('auth')->group(function() {
 
   Route::get('/profile/edit', 'UsersController@edit')->name('profile.edit');
 
-  Route::post('/profile/{id}', 'UsersController@update')->name('profile.update');
-  //si pongo put me rompey no me dice porque, ahora con post no me rompe pero no me hace nada el formulario de mierda
   Route::get('/profile/{id}/friends', 'UsersController@showFriends')->name('profile.showFriends');
+
+  Route::put('/profile/{id}', 'UsersController@update')->name('profile.update');
+  //si pongo put me rompey no me dice porque, ahora con post no me rompe pero no me hace nada el formulario de mierda
+
   //
   // Route::get('/home', 'UsersController@themeSelector')->name('profile.changeTheme');
 
