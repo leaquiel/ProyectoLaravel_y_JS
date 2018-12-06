@@ -45,6 +45,11 @@ Ejemplo
             <li class="nav-item">
               <a class="nav-link alert alert-secondary"
               {{-- href="{{route('profile.changeTheme')}}" --}}
+              >Administrar comentarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link alert alert-secondary"
+              {{-- href="{{route('profile.changeTheme')}}" --}}
               >Cambiar tema de pagina</a>
             </li>
           </ul>

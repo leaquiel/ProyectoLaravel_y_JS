@@ -15,6 +15,11 @@ class User extends Authenticatable
       return $this->hasOne(City::class, 'id', 'city_id');
     }
 
+    public function comments()
+    {
+      return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

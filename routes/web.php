@@ -26,6 +26,9 @@ Route::get('/', function () {
   return view('baseejemplo');
 });
 
+Route::get('/busqueda', 'ActivitiesController@show')->name('busqueda');
+
+
 Route::middleware('auth')->group(function() {
 
   Route::get('/profile', 'UsersController@showUser')->name('users.profile');
@@ -41,6 +44,9 @@ Route::middleware('auth')->group(function() {
   Route::put('/profile/{id}', 'UsersController@update')->name('profile.update');
   //si pongo put me rompey no me dice porque, ahora con post no me rompe pero no me hace nada el formulario de mierda
 
+  Route::get('/addComment/{activity_id}', 'CommentsController@create')->name('comment.create');
+
+  Route::post('/addComment', 'CommentsController@store')->name('comment.store');
   //
   // Route::get('/home', 'UsersController@themeSelector')->name('profile.changeTheme');
 

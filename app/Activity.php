@@ -15,4 +15,9 @@ class Activity extends Model
   {
     return $this->hasOne(Country::class, 'id', 'country_id');
   }
+
+  public function comments()
+  {
+    return $this->hasMany(Comment::class, 'activity_id', 'id');
+  }
 }

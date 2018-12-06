@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Activity;
+use App\City;
 
 class ActivitiesController extends Controller
 {
@@ -49,9 +50,12 @@ class ActivitiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+      $cities= \App\City::where('name', 'like', '%'.$request->search.'%')->get();
+      $search = $request->search;
+
+      return view('activities.show')-> with(compact('cities', 'search'));
     }
 
     /**

@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentsRequest;
+use App\Comment;
+use App\Activity;
+use Auth;
 
-class OpinionsController extends Controller
+
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +26,12 @@ class OpinionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($activity_id)
     {
-        //
+        $activity = Activity::where("id", $activity_id)->first();
+        // dd($activity->name);
+
+        return view('comments.create')->with(compact('activity'));
     }
 
     /**
@@ -32,9 +40,21 @@ class OpinionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommentsRequest $request)
     {
-        //
+        // $text = $request->text;
+        // dd($text);
+
+        $comment = new Comment;
+
+        $comment->user_id = Auth::user()->id;
+        $comment->activity_id = $request->activity_id;
+        $comment->text = $request->text;
+    		$comment->save();
+        // dd($comment);
+
+        return redirect('/addComment/' . $request->activity_id);
+
     }
 
     /**
