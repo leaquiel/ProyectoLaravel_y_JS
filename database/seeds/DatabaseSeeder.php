@@ -34,15 +34,24 @@ class DatabaseSeeder extends Seeder
         // }
 
         // App\Country::create(['name' => 'Argentina']);
-        $countries = factory(App\Country::class)->times(20)->create();
+        $countries = factory(App\Country::class)->times(19)->create();
+        $countries->push(App\Country::create(['name' => 'Argentina']));
+
         $cities = factory(App\City::class)->times(20)->create();
-        $activities = factory(App\Activity::class)->times(5)->create();
+        $activities = factory(App\Activity::class)->times(15)->create();
         $users = factory(App\User::class)->times(5)->create();
 
-        // City <-- country
-        for ($i = 0; $i < count($cities); $i++) {
-          $cities[$i]->country()->associate($countries[rand(0,19)])->save();
+        // Activity_User <----Relaciones
+        for ($i = 0; $i < count($activities); $i++) {
+          $use = $users[rand(0,4)];
+          $use->activities()->save($activities[$i]);
+          // $activities[$i]->users()->save($use);
         }
+
+        // City <-- country
+        // for ($i = 0; $i < count($cities); $i++) {
+        //   $cities[$i]->country()->associate($countries[rand(0,19)])->save();
+        // }
 
         // activity <-- country
         // activity <-- city

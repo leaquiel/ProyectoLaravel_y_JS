@@ -53,7 +53,7 @@ class CommentsController extends Controller
     		$comment->save();
         // dd($comment);
 
-        return redirect('/addComment/' . $request->activity_id);
+        return redirect('/activityDetail/' . $request->activity_id);
 
     }
 

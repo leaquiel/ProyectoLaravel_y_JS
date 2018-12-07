@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use App\User;
 use App\Country;
-// use app\City;
+use Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 
@@ -34,10 +34,10 @@ class UsersController extends Controller
         //
     }
 
-    public function showFriends($id)
+    public function showFriends()
     {
       //aca deberia consultar sobre la tabla que relaciona usuarios conn usuarios
-      return view('users.profile');
+      return view('users.profileFriends');
     }
     /**
      * Display the specified resource.
@@ -48,6 +48,13 @@ class UsersController extends Controller
     public function showUser()
     {
         return view('users.profile');
+    }
+
+    public function showComments()
+    {
+        $comments = Auth::user()->comments;
+
+        return view('users.profileComments')->with(compact('comments'));
     }
 
 

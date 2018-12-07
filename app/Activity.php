@@ -20,4 +20,14 @@ class Activity extends Model
   {
     return $this->hasMany(Comment::class, 'activity_id', 'id');
   }
+
+  public function users()
+  {
+    return $this->belongsToMany(User::class, 'activity_user', 'activity_id', 'user_id');
+  }
+
+  // public function movies()
+	// {
+	// 	return $this->belongsToMany(Movie::class, 'actor_movie', 'actor_id', 'movie_id');
+	// }
 }

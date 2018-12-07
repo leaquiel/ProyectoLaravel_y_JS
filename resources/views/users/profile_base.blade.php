@@ -25,33 +25,14 @@ Ejemplo
 
       <div style="background-color:rgba(115, 134, 138, 0.6); padding: 1% 0;" class="row">
         <div class="col-sm-4">
-          <img class="card-img-top" src="\storage\storage\usersImage\{{ Auth::user()->image }}" alt="Card image cap">
+          <img style="width: 200px" class="card-img-top" src="\storage\storage\usersImage\{{ Auth::user()->image }}" alt="Card image cap">
           <h2>{{Auth::user()->nickname}}</h2>
           <h3>#{{Auth::user()->target}}</h3>
           <p>{{Auth::user()->name}}</p>
           <p>{{Auth::user()->email}}</p>
-          <p>Lorem ipsum dolor sit ame.</p>
+          {{-- <p>Aca podria ir una presentacion del user</p> --}}
           <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link alert alert-secondary"
-              href="/profile/edit"
-              >Editar perfil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link alert alert-secondary"
-              href="/profile/{{Auth::user()->id}}/friends"
-              >Ver Amigos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link alert alert-secondary"
-              {{-- href="{{route('profile.changeTheme')}}" --}}
-              >Administrar comentarios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link alert alert-secondary"
-              {{-- href="{{route('profile.changeTheme')}}" --}}
-              >Cambiar tema de pagina</a>
-            </li>
+            @yield('listaBotones')
           </ul>
           <hr class="d-sm-none">
         </div>
@@ -64,6 +45,7 @@ Ejemplo
 
 
 
+      </div>
 
 <br>
 <br>
@@ -89,8 +71,8 @@ Ejemplo
 <br>
 <br>
 <br>
-
-
-
 </div>
+
+
+
 @endsection

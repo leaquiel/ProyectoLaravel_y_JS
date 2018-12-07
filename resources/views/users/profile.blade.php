@@ -1,4 +1,26 @@
 @extends('users.profile_base')
+@section('listaBotones')
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    href="/profile/edit"
+    >Editar perfil</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    href="/profile/friends"
+    >Ver Amigos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    href="/profile/userComments"
+    >Administrar comentarios</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    {{-- href="{{route('profile.changeTheme')}}" --}}
+    >Cambiar tema de pagina</a>
+  </li>
+@endsection
 @section('profile_content')
 <div class="col-sm-8">
   <h2>ACTIVIDAD</h2>
@@ -14,6 +36,5 @@
   <div class="fakeimg">Fake Image</div>
   <p>Some text..</p>
   <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-</div>
 </div>
 @endsection

@@ -39,12 +39,14 @@ Route::middleware('auth')->group(function() {
 
   Route::get('/profile/edit', 'UsersController@edit')->name('profile.edit');
 
-  Route::get('/profile/{id}/friends', 'UsersController@showFriends')->name('profile.showFriends');
+  Route::get('/profile/friends', 'UsersController@showFriends')->name('profile.showFriends');
+
+  Route::get('profile/userComments', 'UsersController@showComments')->name('profile.showComments');
 
   Route::put('/profile/{id}', 'UsersController@update')->name('profile.update');
   //si pongo put me rompey no me dice porque, ahora con post no me rompe pero no me hace nada el formulario de mierda
 
-  Route::get('/addComment/{activity_id}', 'CommentsController@create')->name('comment.create');
+  Route::get('/activityDetail/{activity_id}', 'CommentsController@create')->name('comment.create');
 
   Route::post('/addComment', 'CommentsController@store')->name('comment.store');
   //
@@ -59,7 +61,7 @@ Route::middleware('auth')->group(function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/actividades', 'ActivitiesController@index');
 

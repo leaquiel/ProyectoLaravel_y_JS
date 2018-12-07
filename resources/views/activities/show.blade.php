@@ -24,19 +24,27 @@ Ejemplo
           @foreach ($cities as $city)
             @if (count($city->activities) > 0)
               <li>
-                <h3>{{$city->name}}</h3>
+                <h3>{{$city->name}}
+
+              </h3>
                 @foreach ($city->activities as $act)
-                  <p> --- {{$act->name}}</p>
-                @endforeach
+                  <p>->{{$act->name}}</p>
                 @if (Auth::check())
                   {{-- <button href="/addComment/{{$act->name}}/{{Auth::user()->id}}">Añadir comentario</button> --}}
-                  <a style="background-color: rgb(157, 151, 94); border: 1px solid grey; padding: 3px 5%;" href="/addComment/{{$act->id}}">Añadir comentario</a>
+                  <a style="background-color: rgb(157, 151, 94); border: 1px solid grey; padding: 3px 5%;" href="/activityDetail/{{$act->id}}">Ver más</a>
+
+                  {{-- PREGUNTAR SI EL USUARIO TIENE ESA ACTIVIDAD AGREGADA Y PONER UN TILDE --}}
+                  <a style="color: white; background-color: rgba(0, 0, 0, 0.58); border: 1px solid grey; padding: 3px 5%;" href="#">Añadir actividad
+                    {{-- <i style="margin-left: 20px;" class="icon ion-md-add"></i> --}}
+                  </a>
                 @endif
+              @endforeach
               </li>
             @endif
           @endforeach
 
       </ul>
+      <br>
     </div>
   </div>
 </div>

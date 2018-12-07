@@ -12,7 +12,7 @@ LogIn
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="background-color:rgba(115, 134, 138, 0.6);">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

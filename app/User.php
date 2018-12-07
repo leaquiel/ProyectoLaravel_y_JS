@@ -20,6 +20,19 @@ class User extends Authenticatable
       return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 
+    public function activities()
+    {
+      return $this->belongsToMany(Activity::class, 'activity_user', 'user_id', 'activity_id');
+    }
+
+    // public function movies()
+  	// {
+  	// 	return $this->belongsToMany(Movie::class, 'actor_movie', 'actor_id', 'movie_id');
+  	// }
+
+
+
+
     /**
      * The attributes that are mass assignable.
      *

@@ -1,4 +1,26 @@
 @extends('users.profile_base')
+@section('listaBotones')
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    href="/profile"
+    >Mis actividades</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    href="/profile/friends"
+    >Ver Amigos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    href="/profile/userComments"
+    >Administrar comentarios</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link alert alert-secondary"
+    {{-- href="{{route('profile.changeTheme')}}" --}}
+    >Cambiar tema de pagina</a>
+  </li>
+@endsection
 @section('profile_content')
 <div class="col-sm-8">
   <h2>EDITAR PERFIL</h2>
@@ -159,12 +181,13 @@
           <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary">
-                      Modificar 
+                      Modificar
                   </button>
               </div>
           </div>
       </form>
   </div>
+</div>
 
   <script>
     window.addEventListener("load", function () {

@@ -29,7 +29,7 @@ Register
   @endif --}}
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="background-color:rgba(115, 134, 138, 0.6);">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -124,7 +124,7 @@ Register
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div id="selectCityDiv" class="form-group row" style="display:none;">
                             <label for="city_id" class="col-md-4 col-form-label text-md-right">Ciudad</label>
 
                             <div class="col-md-6">
@@ -195,11 +195,12 @@ Register
         </div>
     </div>
 </div>
-
+<br>
 <script>
   window.addEventListener("load", function () {
     let selectCountries = document.querySelector("#country_id");
     let selectCities = document.querySelector("#city_id");
+    let selectCitiesDiv = document.querySelector("#selectCityDiv");
     console.log(selectCities);
 
     selectCountries.addEventListener("change", function () {
@@ -212,11 +213,12 @@ Register
         .then(response => response.json())
         .then(cities => {
           if (cities.length > 0) {
+            selectCitiesDiv.style.display = 'flex';
             cities.forEach(city => {
               selectCities.innerHTML += `<option value="${city.id}"> ${city.name} </option>`;
             })
           } else {
-            selectCities.innerHTML += `<option value="0"> Sin ciudad </option>`;
+            selectCitiesDiv.style.display = 'none';
           }
         })
         .catch(error => console.log(error));

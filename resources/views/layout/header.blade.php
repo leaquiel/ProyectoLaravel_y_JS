@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse flex-justify-between" id="navbarNav">
     <!-- <div class="collapse navbar-collapse" id="navbarNav" style="display: flex; justify-content: space-between;"> -->
-      <ul class="navbar-nav">
+      <ul class="navbar-nav align-items-center">
         <li class="nav-item <?= ($pageTitle === 'Home') ? 'active' : ''; ?>">
           <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
         </li>
