@@ -10,10 +10,6 @@ Register
 @endsection
 @section('main_content')
 
-
-
-
-
   @php
   use App\User;
   @endphp
@@ -33,7 +29,7 @@ Register
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
+                    <form id="registerForm" method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -42,11 +38,11 @@ Register
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" autofocus>
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -56,11 +52,11 @@ Register
                           <div class="col-md-6">
                             <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
 
+                            <span class="invalid-feedback" role="alert">
                             @if ($errors->has('email'))
-                              <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
-                              </span>
                             @endif
+                          </span>
                           </div>
                         </div>
 
@@ -70,11 +66,11 @@ Register
                             <div class="col-md-6">
                                 <input id="nickname" type="text" class="form-control{{ $errors->has('nickname') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}">
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('nickname'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nickname') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -82,7 +78,6 @@ Register
                             <label for="target" class="col-md-4 col-form-label text-md-right">Target</label>
 
                             <div class="col-md-6">
-                                {{-- <input id="nickname" type="text" class="form-control{{ $errors->has('nickname') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}"> --}}
                                 <select id="target" class="form-control{{ $errors->has('target') ? ' is-invalid' : '' }}" name="target">
 
                                   <option value="">Elije un target</option>
@@ -94,11 +89,11 @@ Register
 
                                 </select>
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('target'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('target') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -116,11 +111,11 @@ Register
 
                                 </select>
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('country_id'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('country_id') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -138,11 +133,11 @@ Register
 
                                 </select>
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('city_id'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('city_id') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -152,11 +147,11 @@ Register
                             <div class="col-md-6">
                                 <input id="image" type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" value="{{ old('image') }}">
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('image'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -166,11 +161,11 @@ Register
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -178,7 +173,13 @@ Register
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                <input id="password-confirm" type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation">
+
+                                <span class="invalid-feedback" role="alert">
+                                @if ($errors->has('password_confirmation'))
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                @endif
+                              </span>
                             </div>
                         </div>
 
@@ -197,6 +198,32 @@ Register
 </div>
 <br>
 <script>
+function validateEmpty () {
+  var error = this.parentElement.querySelector('.invalid-feedback');
+  var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+  if (this.value.trim() === '') {
+    this.classList.add('is-invalid');
+    error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+  } else {
+    error.innerText = '';
+    this.classList.remove('is-invalid');
+    }
+}
+
+function validateEmptyAndEmail () {
+const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+var error = this.parentElement.querySelector('.invalid-feedback');
+var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+if (this.value.trim() === '') {
+  this.classList.add('is-invalid');
+  error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+} else if (!regexEmail.test(this.value.trim())) {
+  error.innerText = 'Escribí un formato de email valido';
+} else {
+  error.innerText = '';
+  this.classList.remove('is-invalid');
+}
+}
   window.addEventListener("load", function () {
     let selectCountries = document.querySelector("#country_id");
     let selectCities = document.querySelector("#city_id");
@@ -222,7 +249,125 @@ Register
           }
         })
         .catch(error => console.log(error));
-    })
-  })
+    });
+
+
+/////////////////////////////////////////////////////////////////////
+
+    var formulario = document.querySelector('#registerForm');
+
+    var campos = formulario.elements;
+
+    campos = Array.from(campos);
+    campos = campos.filter(campo => campo.classList.contains('form-control'));
+
+
+    const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const regexNumbers = /^\d+$/;
+
+    var campoName = formulario.name;
+    var campoEmail = formulario.email;
+    var campoNickname = formulario.nickname;
+    var campoTarget = formulario.target;
+    var campoCountry = formulario.country_id;
+    var campoCity = formulario.city_id;
+    var campoPassword = formulario.password;
+    var campoRePassword = formulario.password_confirmation;
+    var campoImagen = formulario.image;
+    var finalData = {};
+
+    campoName.addEventListener('blur', validateEmpty);
+    campoEmail.addEventListener('blur', validateEmptyAndEmail);
+    campoCountry.addEventListener('blur', validateEmpty);
+    campoNickname.addEventListener('blur', validateEmpty);
+    campoTarget.addEventListener('blur', validateEmpty);
+    campoPassword.addEventListener('blur', validateEmpty);
+    campoRePassword.addEventListener('blur', validateEmpty);
+    campoImagen.addEventListener('blur', validateEmpty);
+
+    campoPassword.addEventListener('blur', function () {
+		var error = this.parentElement.querySelector('.invalid-feedback');
+		var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+		if (this.value.trim() === '') {
+			this.classList.add('is-invalid');
+			error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+		} else if (this.value.trim().length < 4) {
+			error.innerText = 'La contraseña debe tener más de 4 caracteres';
+		} else {
+			error.innerText = '';
+			this.classList.remove('is-invalid');
+		}
+	});
+
+	campoRePassword.addEventListener('change', function () {
+		var error = this.parentElement.querySelector('.invalid-feedback');
+		if (this.value.trim() !== campoPassword.value.trim()) {
+			this.classList.add('is-invalid');
+			error.innerText = 'Las contraseñas no coinciden';
+		} else {
+			error.innerText = '';
+			this.classList.remove('is-invalid');
+		}
+	});
+
+
+
+
+
+
+
+
+
+
+
+    formulario.addEventListener('submit', function (e) {
+      if (
+			campoName.value.trim() === '' ||
+			campoEmail.value.trim() === '' ||
+			campoNickname.value.trim() === '' ||
+			campoPassword.value.trim() === '' ||
+			campoRePassword.value.trim() === '' ||
+			campoCountry.value.trim() === '' ||
+			campoCity.value.trim() === '' ||
+			campoTarget.value.trim() === ''
+		) {
+      e.preventDefault();
+			campos.forEach(function (campo) {
+				var error = campo.parentElement.querySelector('.invalid-feedback');
+				var nombreCampo = campo.parentElement.parentElement.querySelector('label').innerText;
+				if (campo.value.trim() === '') {
+					campo.classList.add('is-invalid');
+					error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+				}
+			});
+		} else if (campoRePassword.value !== campoPassword.value) {
+      e.preventDefault();
+			campoRePassword.classList.add('is-invalid');
+			campoRePassword.parentElement.querySelector('.invalid-feedback').innerText = 'Las contraseñas no coinciden';
+		} else {
+      e.submit();
+			campos.forEach(function (campo) {
+				finalData[campo.name] = campo.value;
+				var error = campo.parentElement.querySelector('.invalid-feedback');
+				campo.classList.remove('is-invalid');
+				campo.value = '';
+				error.innerText = '';
+			});
+			// formulario.style.display = 'none';
+
+			// var ul = document.createElement('ul');
+      //
+			// for (var key in finalData) {
+			// 	if (key !== 'password' && key !== 'rePassword') {
+			// 		var li = document.createElement('li');
+			// 		li.innerText = key + ': ' + finalData[key];
+			// 		ul.append(li);
+			// 	}
+			// }
+      //
+			// document.querySelector('.col-md-8').append(ul);
+		}
+	});
+});
 </script>
 @endsection

@@ -1,8 +1,8 @@
 @extends('layout.base')
 @section('title')
-Ejemplo
+CustomTrip
 @php
-  $pageTitle = 'Ejemplo';
+  $pageTitle = 'CustomTrip';
 @endphp
 @endsection
 @section('main_content')
@@ -51,25 +51,37 @@ Ejemplo
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="/images/trekking.jpg" alt="First slide">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Trekking en Bariloche!</h5>
-        <p></p>
-      </div>
+      <a href="activityDetail/7">
+
+        <img class="d-block w-100" src="/images/trekking.jpg" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Trekking en Bariloche!</h2>
+          <p></p>
+        </div>
+      </a>
+
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="/images/paracaidismo.jpg" alt="Second slide">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Paracaidismo en Lujan!</h5>
-        <p></p>
-      </div>
+      <a href="activityDetail/7">
+
+        <img class="d-block w-100" src="/images/paracaidismo.jpg" alt="Second slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Paracaidismo en Lujan!</h2>
+          <p></p>
+        </div>
+
+      </a>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="/images/bolichito.jpg" alt="Third slide">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Boliches en la noche de Buenos Aires</h5>
-        <p></p>
-      </div>
+      <a href="activityDetail/7">
+
+        <img class="d-block w-100" src="/images/bolichito.jpg" alt="Third slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Boliches en la noche de Buenos Aires</h2>
+          <p></p>
+        </div>
+
+      </a>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -127,7 +139,7 @@ window.addEventListener("load", function () {
 
 let carouselActivities = document.querySelector('#carousel');
 
-carouselActivities.addEventListener("scroll", function(){
+window.addEventListener("scroll", function(){
   carouselActivities.style.display = "block";
   console.log(carouselActivities);
 });

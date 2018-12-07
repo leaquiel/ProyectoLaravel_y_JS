@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: rgba(30, 37, 59, 0.60);">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: rgba(30, 37, 59, 0.75);">
     <a class="navbar-brand logo_CT" href="{{ url('/') }}">CostumTrip</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

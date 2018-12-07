@@ -62,10 +62,10 @@ class DatabaseSeeder extends Seeder
           $coun->activities()->save($activities[$i]);
         }
 
-        // User <-- city
+        // User <-- ccountry
         for ($i = 0; $i < count($users); $i++) {
-          $cit = $cities[rand(0,19)];
-          $cit->users()->save($users[$i]);
+          $country = $countries[rand(0,19)];
+          $country->users()->save($users[$i]);
         }
     }
 }

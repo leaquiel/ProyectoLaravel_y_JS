@@ -1,8 +1,8 @@
 @extends('layout.base')
 @section('title')
-Ejemplo
+CustomTrip - Actividades
 @php
-  $pageTitle = 'Ejemplo';
+  $pageTitle = 'CustomTrip - Actividades';
 @endphp
 @endsection
 @section('main_content')
@@ -29,9 +29,9 @@ Ejemplo
               </h3>
                 @foreach ($city->activities as $act)
                   <p>->{{$act->name}}</p>
-                @if (Auth::check())
                   {{-- <button href="/addComment/{{$act->name}}/{{Auth::user()->id}}">Añadir comentario</button> --}}
                   <a style="background-color: rgb(157, 151, 94); border: 1px solid grey; padding: 3px 5%;" href="/activityDetail/{{$act->id}}">Ver más</a>
+                  @if (Auth::check())
 
                   {{-- PREGUNTAR SI EL USUARIO TIENE ESA ACTIVIDAD AGREGADA Y PONER UN TILDE --}}
                   <a style="color: white; background-color: rgba(0, 0, 0, 0.58); border: 1px solid grey; padding: 3px 5%;" href="#">Añadir actividad

@@ -16,7 +16,7 @@ LogIn
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form id="registerForm" method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -25,11 +25,11 @@ LogIn
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"  autofocus>
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -39,11 +39,11 @@ LogIn
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
 
+                                <span class="invalid-feedback" role="alert">
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
                                 @endif
+                              </span>
                             </div>
                         </div>
 
@@ -76,6 +76,89 @@ LogIn
         </div>
     </div>
 </div>
+
+<script>
+
+window.addEventListener("load", function () {
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+var formulario = document.querySelector('#registerForm');
+
+var campos = formulario.elements;
+
+campos = Array.from(campos);
+campos = campos.filter(campo => campo.classList.contains('form-control'));
+
+
+const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+var campoEmail = formulario.email;
+var campoPassword = formulario.password;
+var finalData = {};
+
+function validateEmpty () {
+  var error = this.parentElement.querySelector('.invalid-feedback');
+  var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+  if (this.value.trim() === '') {
+    this.classList.add('is-invalid');
+    error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+  } else {
+    error.innerText = '';
+    this.classList.remove('is-invalid');
+    }
+}
+
+function validateEmptyAndEmail () {
+var error = this.parentElement.querySelector('.invalid-feedback');
+var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+if (this.value.trim() === '') {
+  this.classList.add('is-invalid');
+  error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+} else if (!regexEmail.test(this.value.trim())) {
+  error.innerText = 'Escribí un formato de email valido';
+} else {
+  error.innerText = '';
+  this.classList.remove('is-invalid');
+}
+}
+
+campoPassword.addEventListener('blur', validateEmpty);
+campoEmail.addEventListener('blur', validateEmptyAndEmail);
+
+
+
+
+
+formulario.addEventListener('submit', function (e) {
+  if (
+    campoEmail.value.trim() === '' ||
+    campoPassword.value.trim() === ''
+  )
+  {
+    e.preventDefault();
+    campos.forEach(function (campo) {
+    var error = campo.parentElement.querySelector('.invalid-feedback');
+    var nombreCampo = campo.parentElement.parentElement.querySelector('label').innerText;
+    if (campo.value.trim() === '') {
+      campo.classList.add('is-invalid');
+      error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+    }
+    });
+  } else {
+    e.submit();
+    campos.forEach(function (campo) {
+      finalData[campo.name] = campo.value;
+      var error = campo.parentElement.querySelector('.invalid-feedback');
+      campo.classList.remove('is-invalid');
+      campo.value = '';
+      error.innerText = '';
+    });
+  }
+});
+
+});
+
+</script>
 
 <br><br><br>
 

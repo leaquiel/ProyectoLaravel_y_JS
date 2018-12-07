@@ -28,6 +28,7 @@ $factory->define(App\User::class, function (Faker $faker) {
           'Fiestero',
           'Trabajo',
         ]),
-        'image' => $faker->imageUrl(640, 480),
+        // 'image' => $faker->imageUrl(640, 480),
+        'image' => 'defaultUserImage.png',
     ];
 });

@@ -48,7 +48,6 @@ Route::middleware('auth')->group(function() {
   Route::put('/profile/{id}', 'UsersController@update')->name('profile.update');
   //si pongo put me rompey no me dice porque, ahora con post no me rompe pero no me hace nada el formulario de mierda
 
-  Route::get('/activityDetail/{activity_id}', 'CommentsController@create')->name('comment.create');
 
   Route::post('/addComment', 'CommentsController@store')->name('comment.store');
   //
@@ -56,6 +55,7 @@ Route::middleware('auth')->group(function() {
 
 });
 
+Route::get('/activityDetail/{activity_id}', 'CommentsController@create')->name('comment.create');
 
 
 
@@ -70,7 +70,7 @@ Route::get('/actividades', 'ActivitiesController@index');
 
 Route::get('/apiCities/{country_id}', 'CitiesController@endPointCityByCountryId');
 
-Route::get('/apiCities', 'CitiesController@endPointAllCities');
+// Route::get('/apiCities', 'CitiesController@endPointAllCities');
 
 
 

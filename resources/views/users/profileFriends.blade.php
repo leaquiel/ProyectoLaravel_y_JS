@@ -29,9 +29,9 @@
         <span id="spanInformation" style="border-radius: 10px; display: none; background-color: white; padding: 2px .8em">Area en desarrollo :o</span>
       </i>
     </h2>
+    <h4>Buscar amigos</h4>
     <form action="" method="get">
       <div class="input-group mb-3"> <!--FORMULARIO DE BUSQUEDA-->
-
         <input name="searchFriend" type="text" class="form-control border-secondary border-right-0 rounded-0">
 
         <div class="input-group-append">

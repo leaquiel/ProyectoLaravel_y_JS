@@ -31,9 +31,20 @@
       <h4>{{$comment->activity->country->name}}, {{$comment->activity->city->name}}</h4>
       <h4>{{$comment->activity->name}}</h4>
       <p>{{$comment->text}}</p>
+
+      <button class="btn btn-success" disabled type="button" name="button">
+        <i class="icon ion-md-create"></i>
+      </button>
+
+      <button class="btn btn-danger" disabled type="button" name="button">
+        <i class="icon ion-md-trash"></i>
+      </button>
+      <hr>
     @endforeach
   @else
     <h2>No tienes comentarios!</h2>
   @endif
 </div>
+
+
 @endsection

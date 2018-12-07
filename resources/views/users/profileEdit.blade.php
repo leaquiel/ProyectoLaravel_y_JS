@@ -31,11 +31,7 @@
 
           {{ method_field('PUT') }}
 
-          @if ($errors)
-            @foreach ($errors->all() as $error)
-              <li> {{ $error }} </li>
-            @endforeach
-          @endif
+
 
           <div class="form-group row">
               <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
@@ -85,7 +81,6 @@
               <label for="target" class="col-md-4 col-form-label text-md-right">Target</label>
 
               <div class="col-md-6">
-                  {{-- <input id="nickname" type="text" class="form-control{{ $errors->has('nickname') ? ' is-invalid' : '' }}" name="nickname" value="{{ old('nickname') }}"> --}}
                   <select id="target" class="form-control{{ $errors->has('target') ? ' is-invalid' : '' }}" name="target">
 
                     <option value="">Elije un target</option>
@@ -164,7 +159,7 @@
               </div>
           </div>
 
-          <div class="form-group row">
+          {{-- <div class="form-group row">
               <label for="actualPassword" class="col-md-4 col-form-label text-md-right">Contraseña actual</label>
 
               <div class="col-md-6">
@@ -176,7 +171,7 @@
                   @endif
                   </span>
               </div>
-          </div>
+          </div> --}}
 
           <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
@@ -227,7 +222,6 @@
     var campoTarget = formulario.target;
     var campoCountry = formulario.country_id;
     var campoCity = formulario.city_id;
-    var campoActualPassword = formulario.actualPassword;
     var finalData = {};
 
     function validateEmpty () {
@@ -260,17 +254,9 @@
     campoEmail.addEventListener('blur', validateEmptyAndEmail);
     campoCountry.addEventListener('blur', validateEmpty);
 
-    campoActualPassword.addEventListener('blur', function () {
-      var error = this.parentElement.querySelector('.invalid-feedback');
-      var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
-      if (this.value.trim() === '') {
-        this.classList.add('is-invalid');
-        error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
-      } else {
-        error.innerText = '';
-        this.classList.remove('is-invalid');
-      }
-    });
+
+
+
 
     formulario.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -293,6 +279,7 @@
         }
         });
       } else {
+        e.submit();
         campos.forEach(function (campo) {
           finalData[campo.name] = campo.value;
           var error = campo.parentElement.querySelector('.invalid-feedback');
@@ -300,7 +287,7 @@
           campo.value = '';
           error.innerText = '';
         });
-        formulario.style.display = 'none';
+        // formulario.style.display = 'none';
       }
     });
 

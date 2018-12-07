@@ -1,5 +1,8 @@
+
+
 @extends('users.profile_base')
 @section('listaBotones')
+  
   <li class="nav-item">
     <a class="nav-link alert alert-secondary"
     href="/profile/edit"

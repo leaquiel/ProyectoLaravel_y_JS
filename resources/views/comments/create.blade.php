@@ -1,8 +1,8 @@
 @extends('layout.base')
 @section('title')
-Ejemplo
+CustomTrip - Detalle Actividad
 @php
-  $pageTitle = 'Ejemplo';
+  $pageTitle = 'CustomTrip - Detalle Actividad';
 @endphp
 @endsection
 @section('main_content')
@@ -14,10 +14,10 @@ Ejemplo
 
   <div class="col-sm-8">
     <h2>{{$activity->name}}</h2>
-    <h2>{{$activity->city->name}}, {{$activity->country->name}}</h2>
-    {{-- <p>{{$activity->detalle}}</p> --}}
+    <h3>{{$activity->city->name}}, {{$activity->country->name}}</h3>
+    <p>{{$activity->detail}}</p>
     @if (count($activity->comments)!=0)
-      <h2>Otros comentarios:</h2>
+      <h2>Comentarios:</h2>
 
       <ul>
         @foreach ($activity->comments as $comment)
@@ -31,7 +31,7 @@ Ejemplo
       </ul>
     @endif
   </div>
-
+@if (Auth::check())
   <form id="createCommentForm" method="POST" action="/addComment">
       @csrf
 
@@ -40,7 +40,7 @@ Ejemplo
 
 
       <div class="form-group row">
-          <label for="actualPassword" class="col-md-4 col-form-label text-md-right"><h4>Añadir comentario:</h4></label>
+          <label class="col-md-4 col-form-label text-md-right"><h4>Añadir comentario:</h4></label>
 
           <div class="col-md-8">
               <input type="text" class="form-control{{ $errors->has('text') ? ' is-invalid' : '' }}" name="text">
@@ -61,7 +61,7 @@ Ejemplo
           </div>
       </div>
   </form>
-
+@endif
 
 
 
@@ -69,4 +69,69 @@ Ejemplo
   <br>
   <br>
   <br>
+  <script>
+
+  window.addEventListener("load", function () {
+  /////////////////////////////////////////////////////////////////////////////////////////////
+
+  var formulario = document.querySelector('#createCommentForm');
+
+  var campos = formulario.elements;
+
+  campos = Array.from(campos);
+  campos = campos.filter(campo => campo.classList.contains('form-control'));
+
+
+
+  var campoTexto = formulario.text;
+  var finalData = {};
+
+  // function validateEmpty () {
+  //   var error = this.parentElement.querySelector('.invalid-feedback');
+  //   var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
+  //   if (this.value.trim() === '') {
+  //     this.classList.add('is-invalid');
+  //     error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+  //   } else {
+  //     error.innerText = '';
+  //     this.classList.remove('is-invalid');
+  //     }
+  // }
+
+  // campoTexto.addEventListener('blur', validateEmpty);
+
+
+
+
+
+  formulario.addEventListener('submit', function (e) {
+    if (
+      campoTexto.value.trim() === ''
+    )
+    {
+      e.preventDefault();
+      campos.forEach(function (campo) {
+      var error = campo.parentElement.querySelector('.invalid-feedback');
+      var nombreCampo = campo.parentElement.parentElement.querySelector('label').innerText;
+      if (campo.value.trim() === '') {
+        campo.classList.add('is-invalid');
+        error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
+      }
+      });
+    } else {
+      e.submit();
+      campos.forEach(function (campo) {
+        finalData[campo.name] = campo.value;
+        var error = campo.parentElement.querySelector('.invalid-feedback');
+        campo.classList.remove('is-invalid');
+        campo.value = '';
+        error.innerText = '';
+      });
+    }
+
+  });
+
+  });
+
+  </script>
 @endsection

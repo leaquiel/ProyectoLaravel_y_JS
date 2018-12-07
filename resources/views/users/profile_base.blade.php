@@ -1,8 +1,8 @@
 @extends('layout.base')
 @section('title')
-Ejemplo
+CustomTrip - Profile
 @php
-  $pageTitle = 'Ejemplo';
+  $pageTitle = 'CustomTrip - Profile';
 @endphp
 @endsection
 @section('main_content')
