@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function() {
 
   Route::get('profile/userComments', 'UsersController@showComments')->name('profile.showComments');
 
+  Route::get('profile/changeTheme', 'UsersController@changeTheme')->name('profile.changeTheme');
+
   Route::put('/profile/{id}', 'UsersController@update')->name('profile.update');
   //si pongo put me rompey no me dice porque, ahora con post no me rompe pero no me hace nada el formulario de mierda
 

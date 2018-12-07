@@ -36,7 +36,7 @@
 
            <li class="nav-item">
 
-             <a class="nav-link" style=" position: relative; top: 0px;" href="{{ route('logout') }}"
+             <a id="logOutLi" class="nav-link" style=" position: relative; top: 0px;" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
                  Cerrar sesion
@@ -48,6 +48,20 @@
 
            </li>
          @endguest
+
+         <script>
+
+           window.addEventListener("load", function () {
+
+           let logOutLi = document.querySelector('#logOutLi');
+
+           logOutLi.addEventListener("click", function(){
+             localStorage.removeItem('bodyImage');
+             document.body.style.backgroundImage = "url('/images/fondo.jpg')";
+           });
+
+         });
+         </script>
 
 
 

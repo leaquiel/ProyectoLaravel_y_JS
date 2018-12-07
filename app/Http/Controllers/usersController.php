@@ -39,6 +39,11 @@ class UsersController extends Controller
       //aca deberia consultar sobre la tabla que relaciona usuarios conn usuarios
       return view('users.profileFriends');
     }
+
+    public function changeTheme()
+    {
+      return view('users.profileTheme');
+    }
     /**
      * Display the specified resource.
      *

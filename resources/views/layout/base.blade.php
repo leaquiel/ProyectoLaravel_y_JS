@@ -14,7 +14,7 @@
 		{{-- <script href="@yield('script')"></script> --}}
 
 	</head>
-	<body>
+	<body id="mainBody">
 		@include('layout.header')
 
 			@yield('main_content')
@@ -22,3 +22,21 @@
     @include('layout.footer')
 	</body>
 </html>
+<script>
+
+window.addEventListener("load", function () {
+
+
+		if (localStorage.getItem("bodyImage") != null) {
+			let img = localStorage.getItem('bodyImage');
+			document.body.style.backgroundImage = `${img}`;
+			console.log(localStorage.getItem('bodyImage'));
+		}
+		else {
+			localStorage.setItem("bodyImage", "url('/images/fondo.jpg')");
+			console.log(localStorage.getItem('bodyImage'));
+		}
+
+});
+
+</script>

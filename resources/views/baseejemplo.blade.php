@@ -15,7 +15,7 @@ Ejemplo
 
   <h1 class="index-tittle">CustomTrip</h1> <!-- TITULO -->
   <br>
-  <p class="sub-tittle">Busca actividades en las ciudades que quieras mientras te premiamos por hacerlo!</p> <!--TITULO DE BUSCADOR-->
+  <p class="sub-tittle">Busca actividades en las ciudades preferidas!</p> <!--TITULO DE BUSCADOR-->
 
 
   <form action="/busqueda" method="get">
@@ -36,27 +36,61 @@ Ejemplo
 
     </div>
   </form>
-  <ul id="coso">
+  {{-- <ul id="coso">
     <li>Item 1</li>
     <li>Item 2</li>
     <li>Item 3</li>
     <li>Item 4</li>
-  </ul>
+  </ul> --}}
   </div>
 
-  {{-- <div style="display: none;" id="searchDiv" class="container"> --}}
-    {{-- @if ()
-      <h1>Hemos encontrado las siguientes actividades para vos!</h1>
-      <ul>
-        @foreach ()
-          <li></li>
-        @endforeach
-      </ul>
-    @else
-      <h1>No hemos encontrado ninguna actividad</h1>
 
-    @endif --}}
-  {{-- </div> --}}
+<br><br><br>
+<div style="display: none;" id="carousel">
+
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="/images/trekking.jpg" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Trekking en Bariloche!</h5>
+        <p></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="/images/paracaidismo.jpg" alt="Second slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Paracaidismo en Lujan!</h5>
+        <p></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="/images/bolichito.jpg" alt="Third slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Boliches en la noche de Buenos Aires</h5>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -68,15 +102,15 @@ Ejemplo
 <script>
 
 window.addEventListener("load", function () {
-  let list = Array.from(document.querySelectorAll('#coso li'));
-  let search = document.querySelector('#search');
-
-  list.forEach(function (ele) {
-    ele.addEventListener('click', function () {
-      search.value = this.innerText;
-      ele.parentElement.style.display = 'none';
-    })
-  })
+  // let list = Array.from(document.querySelectorAll('#coso li'));
+  // let search = document.querySelector('#search');
+  //
+  // list.forEach(function (ele) {
+  //   ele.addEventListener('click', function () {
+  //     search.value = this.innerText;
+  //     ele.parentElement.style.display = 'none';
+  //   })
+  // });
 
 //   let browserDiv = document.querySelector("#browserDiv");
 //   let searchDiv = document.querySelector("#searchDiv");
@@ -90,6 +124,18 @@ window.addEventListener("load", function () {
 //     searchDiv.style.display= 'block';
 //
 //   })
+
+let carouselActivities = document.querySelector('#carousel');
+
+carouselActivities.addEventListener("scroll", function(){
+  carouselActivities.style.display = "block";
+  console.log(carouselActivities);
+});
+
+
+
+
+
 })
 
 </script>
