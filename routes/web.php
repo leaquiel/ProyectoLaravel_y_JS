@@ -50,6 +50,13 @@ Route::middleware('auth')->group(function() {
 
 
   Route::post('/addComment', 'CommentsController@store')->name('comment.store');
+
+  Route::get('/editComment/{id}', 'CommentsController@edit')->name('comment.edit');
+  Route::put('/editComment/{id}', 'CommentsController@update')->name('comment.update');
+  Route::delete('/profile/userComments/{id}', 'CommentsController@destroy')->name('comment.destroy');
+  // Route::delete('/movies/{id}', 'MoviesController@destroy')->name('movies.delete');
+
+
   //
   // Route::get('/home', 'UsersController@themeSelector')->name('profile.changeTheme');
 

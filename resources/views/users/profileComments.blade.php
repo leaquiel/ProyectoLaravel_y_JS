@@ -24,6 +24,18 @@
 @section('profile_content')
 <div class="col-sm-8">
 
+  @if (session('deleted'))
+    <div class="alert alert-danger">
+        {{ session('deleted') }}
+    </div>
+  @endif
+
+  @if (session('updated'))
+    <div class="alert alert-success">
+        {{ session('updated') }}
+    </div>
+  @endif
+
   @if (count($comments)!=0)
     <h2>Tus comentarios:</h2>
     <hr>
@@ -32,13 +44,28 @@
       <h4>{{$comment->activity->name}}</h4>
       <p>{{$comment->text}}</p>
 
-      <button class="btn btn-success" disabled type="button" name="button">
-        <i class="icon ion-md-create"></i>
-      </button>
+      {{-- <button class="btn btn-success" disabled type="button" name="button">
+        <a href="#">
+          <i class="icon ion-md-create"></i>
+        </a>
+      </button> --}}
 
-      <button class="btn btn-danger" disabled type="button" name="button">
-        <i class="icon ion-md-trash"></i>
-      </button>
+      <a href="/editComment/{{$comment->id}}" class="btn btn-success"><i class="icon ion-md-create"></i></a>
+
+      {{-- <a href="/profile/userComments/{{Auth::user()->id}}" class="btn btn-danger"><i class="icon ion-md-trash"></i></a> --}}
+
+      <form action="{{ route('comment.destroy', $comment->id) }}" method="post" style="display: inline-block;">
+    		@csrf
+    		{{ method_field('DELETE') }}
+    		<button type="submit" class="btn btn-danger"><i class="icon ion-md-trash"></i></button>
+    	</form>
+
+
+      {{-- <button class="btn btn-danger" disabled type="button" name="button">
+        <a href="/profile/userComments/{id}">
+          <i class="icon ion-md-trash"></i>
+        </a>
+      </button> --}}
       <hr>
     @endforeach
   @else

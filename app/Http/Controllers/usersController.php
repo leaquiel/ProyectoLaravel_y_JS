@@ -111,7 +111,7 @@ class UsersController extends Controller
       $user->city_id = $request->city_id;
       $user->target = $request->target;
       $user->save();
-      return redirect('/profile');
+      return redirect('/profile')->with('profileUpdated', 'Perfil editado');
     }
 
     /**

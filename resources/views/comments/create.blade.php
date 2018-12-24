@@ -23,7 +23,12 @@ CustomTrip - Detalle Actividad
         @foreach ($activity->comments as $comment)
           <hr>
           <h3>Hecho por: </h3>
-          <h5>{{ $comment->user->name }}</h5>
+          @if ($comment->user->name == Auth::user()->name)
+            <h5 style="color: red">Vos</h5>
+          @else
+            <h5>{{$comment->user->name}}</h5>
+          @endif
+
           <img src="\storage\storage\usersImage\{{ $comment->user->image }}" height="40" width="40" style="border-radius: 50%; ">
 
           <li><p>{{$comment->text}}</p></li>

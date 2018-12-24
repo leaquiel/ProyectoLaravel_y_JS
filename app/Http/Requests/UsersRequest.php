@@ -28,7 +28,7 @@ class UsersRequest extends FormRequest
    			'email' => 'required',
    			'nickname' => 'required',
    			'image' => 'required | mimes:jpeg,jpg,png',
-   			'city_id' => 'required',
+   			// 'city_id' => 'required',
    			'target' => 'required',
    			// 'actualPassword' => 'required'
    		];
