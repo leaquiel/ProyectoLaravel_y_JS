@@ -16,10 +16,16 @@
     >Ver Amigos</a>
   </li>
   <li class="nav-item">
+    <a style="border: 2px solid rgb(30, 82, 221)" class="nav-link alert alert-secondary"
+    href="/profile/userComments"
+    >Administrar comentarios</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link alert alert-secondary"
     href="/profile/changeTheme"
     >Cambiar tema de pagina</a>
   </li>
+
 @endsection
 @section('profile_content')
 <div class="col-sm-8">
@@ -44,15 +50,7 @@
       <h4>{{$comment->activity->name}}</h4>
       <p>{{$comment->text}}</p>
 
-      {{-- <button class="btn btn-success" disabled type="button" name="button">
-        <a href="#">
-          <i class="icon ion-md-create"></i>
-        </a>
-      </button> --}}
-
       <a href="/editComment/{{$comment->id}}" class="btn btn-success"><i class="icon ion-md-create"></i></a>
-
-      {{-- <a href="/profile/userComments/{{Auth::user()->id}}" class="btn btn-danger"><i class="icon ion-md-trash"></i></a> --}}
 
       <form action="{{ route('comment.destroy', $comment->id) }}" method="post" style="display: inline-block;">
     		@csrf
@@ -60,12 +58,6 @@
     		<button type="submit" class="btn btn-danger"><i class="icon ion-md-trash"></i></button>
     	</form>
 
-
-      {{-- <button class="btn btn-danger" disabled type="button" name="button">
-        <a href="/profile/userComments/{id}">
-          <i class="icon ion-md-trash"></i>
-        </a>
-      </button> --}}
       <hr>
     @endforeach
   @else

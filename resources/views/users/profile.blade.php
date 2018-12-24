@@ -1,8 +1,10 @@
-
-
 @extends('users.profile_base')
 @section('listaBotones')
-
+  <li class="nav-item">
+    <a style="border: 2px solid rgb(30, 82, 221)" class="nav-link alert alert-secondary"
+    href="/profile"
+    >Mis actividades</a>
+  </li>
   <li class="nav-item">
     <a class="nav-link alert alert-secondary"
     href="/profile/edit"
@@ -26,11 +28,13 @@
 @endsection
 @section('profile_content')
 <div class="col-sm-8">
+
   @if (session('profileUpdated'))
     <div class="alert alert-success">
         {{ session('profileUpdated') }}
     </div>
   @endif
+
   <h2>ACTIVIDAD</h2>
   <hr>
   <h4>Boliche bailable</h4>

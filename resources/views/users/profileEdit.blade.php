@@ -6,6 +6,11 @@
     >Mis actividades</a>
   </li>
   <li class="nav-item">
+    <a style="border: 2px solid rgb(30, 82, 221)" class="nav-link alert alert-secondary"
+    href="/profile/edit"
+    >Editar perfil</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link alert alert-secondary"
     href="/profile/friends"
     >Ver Amigos</a>
@@ -179,7 +184,6 @@
 
         let countryId = selectCountries.value;
 
-        // fetch(`http://localhost:8000/apiCities/20`)
         fetch(`http://localhost:8000/apiCities/${countryId}`)
          .then(response => response.json())
          .then(cities => {
@@ -197,28 +201,8 @@
            }
          })
          .catch(error => console.log(error));
-
-
-
-
       })
 
-      // countryId.addEventListener("change", function (){
-      //
-      //
-      // fetch(`http://localhost:8000/apiCities/${countryId}`)
-      //   .then(response => response.json())
-      //   .then(cities => {
-      //     if (cities.length > 0) {
-      //       cities.forEach(city => {
-      //         selectCities.innerHTML += `<option value="${city.id}"> ${city.name} </option>`;
-      //         divCities.style.display = "block";
-      //       })
-      //
-      //   })
-      //   .catch(error => console.log(error));
-      //
-      // });
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 

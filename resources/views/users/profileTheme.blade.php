@@ -20,9 +20,13 @@
     href="/profile/userComments"
     >Administrar comentarios</a>
   </li>
+  <li class="nav-item">
+    <a style="border: 2px solid rgb(30, 82, 221)" class="nav-link alert alert-secondary"
+    href="/profile/changeTheme"
+    >Cambiar tema de pagina</a>
+  </li>
 @endsection
 @section('profile_content')
-{{-- <div class="container"> --}}
   <div class="col-sm-8">
     <h2>Aqui puedes elegir entre estos fondos!</h2>
     <hr><br>
@@ -31,7 +35,6 @@
     <img id="Road" style="width: 200px; margin-left: 5%;" src="/images/Road.jpg">
 
   </div>
-{{-- </div> --}}
 
 <script>
   window.addEventListener("load", function () {

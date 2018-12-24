@@ -125,10 +125,6 @@ if (this.value.trim() === '') {
 campoPassword.addEventListener('blur', validateEmpty);
 campoEmail.addEventListener('blur', validateEmptyAndEmail);
 
-
-
-
-
 formulario.addEventListener('submit', function (e) {
   if (
     campoEmail.value.trim() === '' ||

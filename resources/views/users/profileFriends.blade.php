@@ -11,6 +11,11 @@
     >Editar perfil</a>
   </li>
   <li class="nav-item">
+    <a style="border: 2px solid rgb(30, 82, 221)" class="nav-link alert alert-secondary"
+    href="/profile/friends"
+    >Ver Amigos</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link alert alert-secondary"
     href="/profile/userComments"
     >Administrar comentarios</a>

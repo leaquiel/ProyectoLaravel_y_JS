@@ -91,24 +91,6 @@ CustomTrip - Detalle Actividad
   var campoTexto = formulario.text;
   var finalData = {};
 
-  // function validateEmpty () {
-  //   var error = this.parentElement.querySelector('.invalid-feedback');
-  //   var nombreCampo = this.parentElement.parentElement.querySelector('label').innerText;
-  //   if (this.value.trim() === '') {
-  //     this.classList.add('is-invalid');
-  //     error.innerText = 'El campo ' + nombreCampo + ' es obligatorio';
-  //   } else {
-  //     error.innerText = '';
-  //     this.classList.remove('is-invalid');
-  //     }
-  // }
-
-  // campoTexto.addEventListener('blur', validateEmpty);
-
-
-
-
-
   formulario.addEventListener('submit', function (e) {
     if (
       campoTexto.value.trim() === ''

@@ -127,10 +127,6 @@ Register
 
                                   <option value="">Elije una ciudad</option>
 
-                                  {{-- @foreach ($cities as $city)
-                                    <option value=""> {{ $city->name }}</option>
-                                  @endforeach --}}
-
                                 </select>
 
                                 <span class="invalid-feedback" role="alert">
